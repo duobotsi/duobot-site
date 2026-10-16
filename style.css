@@ -240,3 +240,10 @@ h3 { margin: 0 0 .5rem; font-size: 1.25rem; font-weight: 800; line-height: 1.3; 
 .cookie-box { width: min(480px, 100%); background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; box-shadow: 0 20px 60px rgba(10,186,181,.2); text-align: left; }
 .cookie-box strong { font-size: 1.3rem; }
 .cookie-box .cookie-actions { margin-top: 1.1rem; justify-content: flex-end; }
+
+.cookie-text a { color: var(--pink); text-decoration: underline; }
+.cookie-text p { line-height: 1.5; }
+.cookie-panel.notice { max-height: 85vh; overflow-y: auto; }
+.cookie-panel.notice p { color: var(--muted); font-size: .95rem; line-height: 1.55; margin: 0 0 .8rem; }
+.cookie-panel.notice strong { color: #fff; }
+#cookie-notice { z-index: 70; }

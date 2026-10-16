@@ -192,7 +192,7 @@
     <div class="cookie-box">
     <div class="cookie-text">
       <strong id="ck-title">Cookies</strong>
-      <p>We use cookies to remember your choice and, only if you accept, to help us improve the site. You can change this anytime from Cookie settings in the footer.</p>
+      <p>We use cookies and similar technologies. Essential ones remember your choice on this device and keep the site working. With your permission, we may also use analytics cookies to count visits and improve the site. We don't use advertising cookies and we don't sell your information. You can change your choice anytime from Cookie settings in the footer. <a href="#cookie-notice" id="ck-learn">Learn more</a></p>
     </div>
     <div class="cookie-actions">
       <button type="button" class="cbtn" id="ck-reject">Decline</button>
@@ -213,6 +213,18 @@
     </div>
   </div>
 
+
+  <div class="cookie-modal" id="cookie-notice" role="dialog" aria-modal="true" aria-labelledby="ckn-title" hidden>
+    <div class="cookie-panel notice">
+      <h2 id="ckn-title">Cookie notice</h2>
+      <p><strong>What we use.</strong> A small saved setting on your device that remembers your cookie choice. Nothing else is set unless you accept analytics.</p>
+      <p><strong>Analytics (optional).</strong> Simple, aggregated visit counts, used only after you press Accept. Declining doesn't affect how the site works.</p>
+      <p><strong>Third parties.</strong> If you play the demo video or follow links to Trello, Google, or other sites, those sites have their own cookie and privacy policies.</p>
+      <p><strong>Your choices.</strong> You can change or withdraw your choice anytime from Cookie settings in the footer, or clear cookies in your browser.</p>
+      <div class="cookie-actions"><button type="button" class="cbtn primary" id="ckn-close">Close</button></div>
+    </div>
+  </div>
+
   <script>
   (function(){
     var KEY='duobot_cookie_choice', $=function(i){return document.getElementById(i)};
@@ -221,6 +233,8 @@
     function save(a){try{localStorage.setItem(KEY,JSON.stringify({analytics:a,date:new Date().toISOString()}))}catch(e){}banner.hidden=true;modal.hidden=true;}
     function openModal(){var c=get();box.checked=!!(c&&c.analytics);banner.hidden=true;modal.hidden=false;$('ckm-save').focus();}
     if(!get()){banner.hidden=false;$('ck-accept').focus();}
+    $('ck-learn').onclick=function(e){e.preventDefault();$('cookie-notice').hidden=false;$('ckn-close').focus();};
+    $('ckn-close').onclick=function(){$('cookie-notice').hidden=true;};
     $('ck-accept').onclick=function(){save(true)};
     $('ck-reject').onclick=function(){save(false)};
         $('cookie-open').onclick=openModal;
