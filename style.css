@@ -207,3 +207,9 @@ h3 { margin: 0 0 .5rem; font-size: 1.25rem; font-weight: 800; line-height: 1.3; 
 .boardbg h3 { margin: 0 0 .5rem; font-size: 1.5rem; }
 .boardbg p { color: var(--muted); margin: 0 0 1.25rem; }
 @media (max-width: 760px) { .boardbg { grid-template-columns: 1fr; } }
+
+/* Demo video */
+.video { padding-bottom: clamp(2rem, 5vw, 3.5rem); }
+.video h2 { margin-bottom: 1.5rem; }
+.demo-video { display: block; width: 100%; height: auto; aspect-ratio: 16/9; background: #000; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 20px 60px rgba(10,186,181,.18); }
+.video .narrow { width: min(960px, 100% - 3rem); }
