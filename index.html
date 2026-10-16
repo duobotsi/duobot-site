@@ -182,10 +182,52 @@
 
   <footer class="footer">
     <div class="container">
-      <p>Duobotsi.com</p>
+      <p>Duobotsi.com &middot; <button type="button" class="linkbtn" id="cookie-open">Cookie settings</button></p>
       <p class="disclaimer">For entertainment purposes only. Duobot is an independent template and is not affiliated with, endorsed by, or sponsored by Trello, Atlassian, Google, or xAI. Trello and Google Calendar are trademarks of their respective owners. Board and app visuals, names, and example details shown on this site are illustrative and may differ from what you see in your own account. Duobot drafts messages and prepares bookings and reminders for your approval; you stay in control of anything that is sent, paid, or booked. Bots can make mistakes, so use your own independent judgment and verify anything important before relying on it. No bots were harmed in the making of this site.</p>
     </div>
   </footer>
 
+
+  <div class="cookie-banner" id="cookie-banner" role="dialog" aria-modal="true" aria-labelledby="ck-title" hidden>
+    <div class="cookie-box">
+    <div class="cookie-text">
+      <strong id="ck-title">Cookies</strong>
+      <p>We use cookies to remember your choice and, only if you accept, to help us improve the site. You can change this anytime from Cookie settings in the footer.</p>
+    </div>
+    <div class="cookie-actions">
+      <button type="button" class="cbtn" id="ck-reject">Decline</button>
+      <button type="button" class="cbtn primary" id="ck-accept">Accept</button>
+    </div>
+    </div>
+  </div>
+
+  <div class="cookie-modal" id="cookie-modal" role="dialog" aria-modal="true" aria-labelledby="ckm-title" hidden>
+    <div class="cookie-panel">
+      <h2 id="ckm-title">Cookie settings</h2>
+      <div class="ck-row"><div><strong>Essential</strong><span>Remembers your cookie choice on this device. Always on.</span></div><input type="checkbox" checked disabled aria-label="Essential cookies, always on"></div>
+      <div class="ck-row"><div><strong>Analytics</strong><span>Simple visit counts to help improve the site. Not in use right now.</span></div><input type="checkbox" id="ck-analytics" aria-label="Analytics cookies"></div>
+      <div class="cookie-actions">
+        <button type="button" class="cbtn" id="ckm-close">Cancel</button>
+        <button type="button" class="cbtn primary" id="ckm-save">Save choices</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var KEY='duobot_cookie_choice', $=function(i){return document.getElementById(i)};
+    var banner=$('cookie-banner'), modal=$('cookie-modal'), box=$('ck-analytics');
+    function get(){try{return JSON.parse(localStorage.getItem(KEY))}catch(e){return null}}
+    function save(a){try{localStorage.setItem(KEY,JSON.stringify({analytics:a,date:new Date().toISOString()}))}catch(e){}banner.hidden=true;modal.hidden=true;}
+    function openModal(){var c=get();box.checked=!!(c&&c.analytics);banner.hidden=true;modal.hidden=false;$('ckm-save').focus();}
+    if(!get()){banner.hidden=false;$('ck-accept').focus();}
+    $('ck-accept').onclick=function(){save(true)};
+    $('ck-reject').onclick=function(){save(false)};
+        $('cookie-open').onclick=openModal;
+    $('ckm-save').onclick=function(){save(box.checked)};
+    $('ckm-close').onclick=function(){modal.hidden=true;if(!get())banner.hidden=false;};
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)$('ckm-close').click()});
+  })();
+  </script>
 </body>
 </html>
